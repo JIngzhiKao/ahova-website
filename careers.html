@@ -1,96 +1,261 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>人才招募 | Ahova</title>
+    <title>加入我們 | Ahova - 尋找風味與工藝的偏執狂</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { brand: { gold: "#C5A059", slate: "#0f172a" } },
+                    colors: {
+                        brand: {
+                            gold: '#C5A059',
+                            slate: '#0f172a',
+                        },
+                    },
                     fontFamily: {
-                        sans: ["Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "sans-serif"],
-                        serif: ["Noto Serif TC", "serif"]
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
         }
     </script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top right, #1a202c, #0f172a);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* 職缺列表的專屬懸停效果：背景微亮，邊框變金 */
+        .job-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+        .job-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(197, 160, 89, 0.5);
+            transform: translateX(8px); /* 向右微微滑動，引導點擊 */
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #f8fafc, #C5A059);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #C5A059; }
+    </style>
 </head>
-<body class="bg-brand-slate text-slate-100 antialiased font-sans">
-    <nav class="fixed top-0 left-0 w-full z-50 bg-brand-slate/85 backdrop-blur border-b border-white/10">
+
+<body class="antialiased font-sans selection:bg-brand-gold selection:text-slate-900 relative">
+
+    <nav class="fixed top-0 left-0 w-full z-50 bg-[#0f172a]/70 backdrop-blur-md border-b border-white/10 transition-all duration-300">
         <div class="max-w-6xl mx-auto px-6 h-24 flex items-center justify-between">
-            <a href="index.html" class="font-serif text-3xl font-bold tracking-wider">Ahova<span class="text-brand-gold">.</span></a>
-            <div class="hidden md:flex items-center gap-8 text-sm font-bold tracking-widest">
-                <a class="hover:text-brand-gold" href="index.html">關於 Ahova</a>
-                <a class="hover:text-brand-gold" href="products.html">產品介紹</a>
-                <a class="text-brand-gold" href="careers.html">人才招募</a>
-                <a class="hover:text-brand-gold" href="contact.html">聯絡我們</a>
+
+            <a href="index.html" class="flex flex-col text-white cursor-pointer group">
+                <span class="text-[10px] font-serif text-brand-gold tracking-[0.2em] uppercase mb-1">The Flavor Canvas</span>
+                <span class="text-3xl font-serif font-bold tracking-wider group-hover:text-brand-gold transition-colors duration-300">Ahova<span class="text-brand-gold">.</span></span>
+            </a>
+
+            <div class="hidden md:flex items-center mt-2">
+                <a href="index.html" class="group flex flex-col items-center cursor-pointer">
+                    <span class="text-sm font-bold text-slate-200 tracking-widest group-hover:text-brand-gold transition-colors duration-300">關於 AHOVA</span>
+                    <span class="text-[10px] text-gray-400 font-serif mt-1 group-hover:text-brand-gold transition-colors duration-300">Home</span>
+                </a>
+                <span class="text-brand-gold/30 mx-6 font-bold mb-4">.</span>
+
+                <a href="products.html" class="group flex flex-col items-center cursor-pointer">
+                    <span class="text-sm font-bold text-slate-200 tracking-widest group-hover:text-brand-gold transition-colors duration-300">產品介紹</span>
+                    <span class="text-[10px] text-gray-400 font-serif mt-1 group-hover:text-brand-gold transition-colors duration-300">Products</span>
+                </a>
+                <span class="text-brand-gold/30 mx-6 font-bold mb-4">.</span>
+
+                <a href="careers.html" class="group flex flex-col items-center cursor-pointer">
+                    <span class="text-sm font-bold text-brand-gold tracking-widest transition-colors duration-300">人力資源</span>
+                    <span class="text-[10px] text-brand-gold font-serif mt-1 transition-colors duration-300">Careers</span>
+                </a>
+                <span class="text-brand-gold/30 mx-6 font-bold mb-4">.</span>
+
+                <a href="contact.html" class="group flex flex-col items-center cursor-pointer">
+                    <span class="text-sm font-bold text-slate-200 tracking-widest group-hover:text-brand-gold transition-colors duration-300">聯絡我們</span>
+                    <span class="text-[10px] text-gray-400 font-serif mt-1 group-hover:text-brand-gold transition-colors duration-300">Contact</span>
+                </a>
             </div>
-            <a href="contact.html" class="hidden md:inline-flex px-5 py-2 border border-brand-gold/60 text-brand-gold rounded-full text-sm font-bold hover:bg-brand-gold hover:text-brand-slate">合作洽詢</a>
+
+            <div class="hidden md:block">
+                <button onclick="window.location.href='contact.html'" class="px-6 py-2 text-sm font-bold bg-white/5 border border-brand-gold/50 text-brand-gold rounded-full hover:bg-brand-gold hover:text-slate-900 transition-all duration-300 hover:shadow-[0_0_15px_rgba(197,160,89,0.4)]">
+                    合作洽詢
+                </button>
+            </div>
         </div>
     </nav>
 
-    <header class="pt-40 pb-20 px-6 text-center">
-        <p class="text-brand-gold font-bold tracking-[0.3em] uppercase text-xs mb-5">Join The Team</p>
-        <h1 class="font-serif text-5xl md:text-7xl font-bold mb-6">尋找理解風味與工程的人。</h1>
-        <p class="max-w-3xl mx-auto text-xl text-slate-300 leading-relaxed">Ahova 是一群相信精準可以改變感官體驗的團隊。如果你在工程、品牌、通路或飲品研發上有專長，我們想認識你。</p>
+    <header class="pt-40 pb-20 px-6 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30 pointer-events-none">
+            <div class="absolute top-20 left-1/3 w-64 h-64 bg-emerald-900/30 rounded-full blur-[80px]"></div>
+            <div class="absolute top-10 right-1/4 w-72 h-72 bg-brand-gold/10 rounded-full blur-[100px]"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto scroll-reveal active">
+            <span class="text-brand-gold font-bold text-sm tracking-widest uppercase mb-4 block">Join The Revolution</span>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6">尋找對風味與工藝的<br><span class="text-gradient">極致偏執狂</span></h1>
+            <div class="h-1 w-24 bg-brand-gold mx-auto rounded-full mb-6"></div>
+            <p class="text-xl text-slate-300 font-light leading-relaxed max-w-2xl mx-auto">
+                我們不只是一間家電公司，我們是一群試圖重寫飲品萃取規則的工程師與感官專家。如果你也拒絕向妥協低頭，這裡就是你的實驗室。
+            </p>
+        </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 pb-28">
-        <section class="grid md:grid-cols-3 gap-8 mb-20">
-            <article class="bg-white/5 border border-white/10 rounded-3xl p-8">
-                <h3 class="font-serif text-2xl font-bold mb-4">工程與感官並重</h3>
-                <p class="text-slate-400 leading-relaxed">我們讓機構、流體、材料與風味品評在同一張桌上討論。</p>
-            </article>
-            <article class="bg-white/5 border border-white/10 rounded-3xl p-8">
-                <h3 class="font-serif text-2xl font-bold mb-4">拒絕粗糙妥協</h3>
-                <p class="text-slate-400 leading-relaxed">從水路設計到品牌溝通，每個細節都要經得起長期使用。</p>
-            </article>
-            <article class="bg-white/5 border border-white/10 rounded-3xl p-8">
-                <h3 class="font-serif text-2xl font-bold mb-4">彈性合作模式</h3>
-                <p class="text-slate-400 leading-relaxed">歡迎全職、專案合作與具備實力的自由工作者加入。</p>
-            </article>
-        </section>
+    <main class="max-w-6xl mx-auto px-6 pb-32 space-y-24">
 
-        <section>
-            <h2 class="font-serif text-3xl font-bold mb-8 border-b border-white/10 pb-5">開放職缺</h2>
-            <div class="space-y-6">
-                <article class="bg-white/5 border border-white/10 rounded-2xl p-7 md:flex justify-between gap-8">
-                    <div>
-                        <p class="text-brand-gold text-xs font-bold tracking-widest mb-3">FULL-TIME / 台北</p>
-                        <h3 class="text-2xl font-bold mb-3">流體動力與感官工程師</h3>
-                        <p class="text-slate-400 leading-relaxed">負責蒸餾系統內部水路設計、萃取參數測試與產品穩定性驗證。</p>
-                    </div>
-                    <a href="contact.html" class="mt-5 md:mt-0 inline-flex items-center px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-brand-slate">查看詳情</a>
-                </article>
-                <article class="bg-white/5 border border-white/10 rounded-2xl p-7 md:flex justify-between gap-8">
-                    <div>
-                        <p class="text-brand-gold text-xs font-bold tracking-widest mb-3">PROJECT / 遠端合作</p>
-                        <h3 class="text-2xl font-bold mb-3">專案制機構設計師</h3>
-                        <p class="text-slate-400 leading-relaxed">協助 3D 結構、金屬件、公差分析與樣品製作，歡迎自由工作者或高校人才。</p>
-                    </div>
-                    <a href="contact.html" class="mt-5 md:mt-0 inline-flex items-center px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-brand-slate">提出合作</a>
-                </article>
-                <article class="bg-white/5 border border-white/10 rounded-2xl p-7 md:flex justify-between gap-8">
-                    <div>
-                        <p class="text-brand-gold text-xs font-bold tracking-widest mb-3">FULL-TIME / 台北</p>
-                        <h3 class="text-2xl font-bold mb-3">品牌行銷與 B2B 業務經理</h3>
-                        <p class="text-slate-400 leading-relaxed">負責產品上市策略、咖啡與茶飲通路合作，以及高端設備導入專案。</p>
-                    </div>
-                    <a href="contact.html" class="mt-5 md:mt-0 inline-flex items-center px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-brand-slate">查看詳情</a>
-                </article>
+        <section class="grid md:grid-cols-3 gap-8 scroll-reveal">
+            <div class="glass-card p-8 rounded-3xl group">
+                <div class="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center mb-6 text-brand-gold border border-brand-gold/20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white">工程硬底子交會感官藝術</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    在這裡，機構工程師會與 Q-Grader (咖啡品質鑑定師) 坐在同一張桌子上，用流體力學的數據來驗證舌尖上的酸甜變化。
+                </p>
+            </div>
+            <div class="glass-card p-8 rounded-3xl group">
+                <div class="w-12 h-12 rounded-full bg-emerald-900/30 flex items-center justify-center mb-6 text-emerald-500 border border-emerald-500/20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white">拒絕平庸的迭代</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    我們信奉硬體設計的頂級標準。從不鏽鋼金屬沖壓的公差，到內部 3D 列印水路的流暢度，每一處細節都必須經得起最嚴苛的壓力測試。
+                </p>
+            </div>
+            <div class="glass-card p-8 rounded-3xl group">
+                <div class="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center mb-6 text-blue-400 border border-blue-400/20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white">靈活的協作生態</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    英雄不怕出身低。我們打破傳統辦公室框架，高度擁抱具備頂尖實力的自由接案者與高校專才，以靈活的專案模式共創硬體未來。
+                </p>
             </div>
         </section>
+
+        <section class="scroll-reveal">
+            <h2 class="text-3xl font-serif font-bold mb-10 border-b border-white/10 pb-6">開放職缺 Open Roles</h2>
+
+            <div class="space-y-6">
+
+                <div class="job-card rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer">
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="bg-brand-gold text-slate-900 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Full-Time</span>
+                            <span class="text-slate-400 text-sm">台北, 台灣</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">流體動力與感官工程師</h3>
+                        <p class="text-slate-400 text-sm max-w-2xl">負責蒸餾引擎內部水路設計優化，並與咖啡師協作建立 0 TDS 萃取參數的黃金基準模型。</p>
+                    </div>
+                    <div>
+                        <button class="w-full md:w-auto px-6 py-2 border border-white/20 text-white rounded-full hover:bg-white hover:text-slate-900 transition-colors text-sm font-bold">
+                            查看詳情
+                        </button>
+                    </div>
+                </div>
+
+                <div class="job-card rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer">
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="bg-blue-500 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Project-Based / Freelance</span>
+                            <span class="text-slate-400 text-sm">遠端 / 彈性協作</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">專案制機構設計師 (歡迎自由工作者/高校專才)</h3>
+                        <p class="text-slate-400 text-sm max-w-2xl">不論你是經驗豐富的接案老手，還是具備硬實力的大學專才。我們需要你協助繪製 3D 結構、模具公差分析與不鏽鋼沖壓件設計。用你的專業，接下這檔硬派專案。</p>
+                    </div>
+                    <div>
+                        <button class="w-full md:w-auto px-6 py-2 border border-white/20 text-white rounded-full hover:bg-white hover:text-slate-900 transition-colors text-sm font-bold">
+                            提案洽詢
+                        </button>
+                    </div>
+                </div>
+
+                <div class="job-card rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer">
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="bg-brand-gold text-slate-900 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Full-Time</span>
+                            <span class="text-slate-400 text-sm">台北, 台灣</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">品牌行銷與 B2B 業務發展經理</h3>
+                        <p class="text-slate-400 text-sm max-w-2xl">負責制定產品上市策略，並開發頂級咖啡廳、精品茶館等 B2B 設備整合解決方案，向世界推廣 The Purity Standard。</p>
+                    </div>
+                    <div>
+                        <button class="w-full md:w-auto px-6 py-2 border border-white/20 text-white rounded-full hover:bg-white hover:text-slate-900 transition-colors text-sm font-bold">
+                            查看詳情
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-12 text-center bg-white/5 border border-white/10 p-8 rounded-3xl">
+                <h4 class="text-xl font-bold text-white mb-3">沒看到適合你的戰場？</h4>
+                <p class="text-slate-400 text-sm mb-6 max-w-xl mx-auto">
+                    如果你確信自己身懷絕技，對改變產業充滿熱情，請不要被職稱限制。直接將你的履歷或過往專案作品集砸向我們信箱。
+                </p>
+                <button onclick="window.location.href='contact.html'" class="px-6 py-3 bg-brand-gold text-slate-900 rounded-full hover:bg-yellow-600 transition-colors font-bold text-sm">
+                    主動投遞履歷
+                </button>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="bg-[#0b1120] border-t border-white/5 py-8">
-        <div class="max-w-6xl mx-auto px-6 text-center text-xs text-slate-500 font-bold tracking-widest">&copy; 2026 Ahova. All rights reserved. The Purity Standard.</div>
+    <footer class="bg-[#0b1120] border-t border-white/5 py-8 mt-auto">
+        <div class="max-w-6xl mx-auto px-6 text-center text-xs text-slate-600 font-bold tracking-widest">
+            &copy; 2026 Ahova. All rights reserved. The Purity Standard.
+        </div>
     </footer>
+
+    <script>
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>

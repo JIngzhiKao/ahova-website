@@ -1,79 +1,177 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahova | 風味的純淨基底</title>
+    <title>Ahova - 極致風味的純淨基底</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { brand: { gold: "#C5A059", slate: "#0f172a" } },
+                    colors: {
+                        brand: {
+                            gold: '#C5A059',
+                            slate: '#0f172a',
+                        },
+                    },
                     fontFamily: {
-                        sans: ["Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "sans-serif"],
-                        serif: ["Noto Serif TC", "serif"]
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
         }
     </script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top right, #1a202c, #0f172a);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(197, 160, 89, 0.4);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 40px -10px rgba(197, 160, 89, 0.15);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #f8fafc, #C5A059);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #C5A059; }
+    </style>
 </head>
-<body class="bg-brand-slate text-slate-100 antialiased font-sans">
-    <nav class="fixed top-0 left-0 w-full z-50 bg-brand-slate/85 backdrop-blur border-b border-white/10">
+
+<body class="antialiased font-sans selection:bg-brand-gold selection:text-slate-900 relative">
+
+    <nav class="fixed top-0 left-0 w-full z-50 bg-[#0f172a]/70 backdrop-blur-md border-b border-white/10 transition-all duration-300">
         <div class="max-w-6xl mx-auto px-6 h-24 flex items-center justify-between">
-            <a href="index.html" class="font-serif text-3xl font-bold tracking-wider">Ahova<span class="text-brand-gold">.</span></a>
-            <div class="hidden md:flex items-center gap-8 text-sm font-bold tracking-widest">
-                <a class="text-brand-gold" href="index.html">關於 Ahova</a>
-                <a class="hover:text-brand-gold" href="products.html">產品介紹</a>
-                <a class="hover:text-brand-gold" href="careers.html">人才招募</a>
-                <a class="hover:text-brand-gold" href="contact.html">聯絡我們</a>
+
+            <a href="index.html" class="flex flex-col text-white cursor-pointer group">
+                <span class="text-[10px] font-serif text-brand-gold tracking-[0.2em] uppercase mb-1">The Flavor Canvas</span>
+                <span class="text-3xl font-serif font-bold tracking-wider group-hover:text-brand-gold transition-colors duration-300">Ahova<span class="text-brand-gold">.</span></span>
+            </a>
+
+            <div class="hidden md:flex items-center mt-2">
+                <a href="index.html" class="group flex flex-col items-center cursor-pointer">
+                    <span class="text-sm font-bold text-brand-gold tracking-widest transition-colors duration-300">關於 AHOVA</span>
+                    <span class="text-[10px] text-brand-gold font-serif mt-1 transition-colors duration-300">Home</span>
+                </a>
+
+                <span class="text-brand-gold/30 mx-6 font-bold mb-4">.</span>
+
+                <a href="products.html" class="group flex flex-col items-center cursor-pointer">
+                    <span class="text-sm font-bold text-slate-200 tracking-widest group-hover:text-brand-gold transition-colors duration-300">產品介紹</span>
+                    <span class="text-[10px] text-gray-400 font-serif mt-1 group-hover:text-brand-gold transition-colors duration-300">Products</span>
+                </a>
+
+                <span class="text-brand-gold/30 mx-6 font-bold mb-4">.</span>
+
+                <a href="careers.html" class="group flex flex-col items-center cursor-pointer">
+                    <span class="text-sm font-bold text-slate-200 tracking-widest group-hover:text-brand-gold transition-colors duration-300">人力資源</span>
+                    <span class="text-[10px] text-gray-400 font-serif mt-1 group-hover:text-brand-gold transition-colors duration-300">Careers</span>
+                </a>
+
+                <span class="text-brand-gold/30 mx-6 font-bold mb-4">.</span>
+
+                <a href="contact.html" class="group flex flex-col items-center cursor-pointer">
+                    <span class="text-sm font-bold text-slate-200 tracking-widest group-hover:text-brand-gold transition-colors duration-300">聯絡我們</span>
+                    <span class="text-[10px] text-gray-400 font-serif mt-1 group-hover:text-brand-gold transition-colors duration-300">Contact</span>
+                </a>
             </div>
-            <a href="contact.html" class="hidden md:inline-flex px-5 py-2 border border-brand-gold/60 text-brand-gold rounded-full text-sm font-bold hover:bg-brand-gold hover:text-brand-slate">合作洽詢</a>
+
+            <div class="hidden md:block">
+                <button onclick="window.location.href='contact.html'" class="px-6 py-2 text-sm font-bold bg-white/5 border border-brand-gold/50 text-brand-gold rounded-full hover:bg-brand-gold hover:text-slate-900 transition-all duration-300 hover:shadow-[0_0_15px_rgba(197,160,89,0.4)]">
+                    合作洽詢
+                </button>
+            </div>
         </div>
     </nav>
 
-    <header class="min-h-screen pt-32 px-6 flex items-center overflow-hidden">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <header class="relative min-h-screen flex flex-col justify-center px-6 pt-24 overflow-hidden pb-20">
+
+        <div class="absolute top-0 left-0 w-full h-full -z-10 opacity-30 pointer-events-none">
+            <div class="absolute top-1/4 left-10 w-96 h-96 bg-brand-gold/10 rounded-full blur-[120px] animate-pulse-slow"></div>
+            <div class="absolute bottom-1/4 right-10 w-96 h-96 bg-emerald-900/20 rounded-full blur-[150px] animate-pulse-slow"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center scroll-reveal active">
+
             <div>
-                <p class="text-brand-gold font-bold tracking-[0.3em] uppercase text-xs mb-5">The Flavor Canvas</p>
-                <h1 class="font-serif text-6xl md:text-8xl font-bold mb-6">Ahova<span class="text-brand-gold">.</span></h1>
-                <h2 class="font-serif text-2xl md:text-3xl font-bold mb-6">還原水的純淨本質，釋放風味最細緻的輪廓。</h2>
-                <p class="text-slate-300 leading-relaxed text-lg mb-8">在探索極致風味的旅程中，最容易被忽略的變數往往是水。Ahova 透過物理蒸餾與精密冷凝，提供適合咖啡、茶飲與高端飲品研發的 0 TDS 純淨水基底，讓每一次萃取都回到原料本身。</p>
-                <div class="flex flex-wrap gap-3 text-sm">
-                    <span class="bg-white/5 border border-white/10 px-4 py-2 rounded-lg"><strong class="text-brand-gold">A</strong>bsolute 純粹</span>
-                    <span class="bg-white/5 border border-white/10 px-4 py-2 rounded-lg"><strong class="text-brand-gold">H-O</strong> 水分子本質</span>
-                    <span class="bg-white/5 border border-white/10 px-4 py-2 rounded-lg"><strong class="text-brand-gold">VA</strong>por 蒸氣新生</span>
+                <span class="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-[0.3em] uppercase bg-white/5 border border-white/10 rounded-full text-brand-gold cursor-default">
+                    Who We Are
+                </span>
+
+                <h1 class="text-6xl md:text-8xl font-serif font-bold mb-6 tracking-tight cursor-default">
+                    Ahova<span class="text-gradient">.</span>
+                </h1>
+
+                <h2 class="text-2xl font-serif font-bold mb-6 text-white">還原水的絕對本質，釋放極致風味。</h2>
+
+                <p class="text-slate-300 leading-relaxed mb-8 text-lg">
+                    在探尋極致風味的旅程中，最大的變數往往是看似透明的「水」。Ahova 意為「所愛之人」，我們透過重塑水分子的純粹，為你獻上毫無雜質的 0 TDS 蒸餾水。<br><br>
+                    摒棄干擾，讓每一大口都能感受最真實的萃取；這不僅是一台機器，而是精品咖啡與珍稀茗茶的空白畫布。
+                </p>
+
+                <div class="flex flex-wrap gap-4 mt-8">
+                    <div class="bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-sm"><strong class="text-brand-gold">A</strong>bsolute (絕對純淨)</div>
+                    <div class="bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-sm"><strong class="text-brand-gold">H-O</strong> (水分子本質)</div>
+                    <div class="bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-sm"><strong class="text-brand-gold">VA</strong>por (蒸氣新生)</div>
                 </div>
             </div>
-            <div class="aspect-square rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5">
-                <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=900&q=80" alt="純淨水與飲品萃取" class="w-full h-full object-cover opacity-90">
+
+            <div class="glass-card aspect-square rounded-[3rem] flex items-center justify-center relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-tr from-slate-900 to-transparent opacity-60 z-10 transition-opacity duration-500 group-hover:opacity-30"></div>
+                <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pure Water Canvas" class="absolute inset-0 w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-110">
             </div>
         </div>
     </header>
 
-    <section class="px-6 py-24 border-t border-white/10">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-            <article class="bg-white/5 border border-white/10 rounded-3xl p-8">
-                <h3 class="font-serif text-2xl font-bold mb-4">風味更清楚</h3>
-                <p class="text-slate-400 leading-relaxed">降低礦物質干擾，讓咖啡豆、茶葉與香氣素材的酸甜、花香與尾韻被完整辨識。</p>
-            </article>
-            <article class="bg-white/5 border border-white/10 rounded-3xl p-8">
-                <h3 class="font-serif text-2xl font-bold mb-4">參數更穩定</h3>
-                <p class="text-slate-400 leading-relaxed">以穩定水質作為研發基準，減少批次差異，讓配方測試更容易被重現。</p>
-            </article>
-            <article class="bg-white/5 border border-white/10 rounded-3xl p-8">
-                <h3 class="font-serif text-2xl font-bold mb-4">應用更廣泛</h3>
-                <p class="text-slate-400 leading-relaxed">適合精品咖啡、茶飲實驗室、餐飲研發、展演吧台與高端設備導入。</p>
-            </article>
+    <footer class="bg-[#0b1120] border-t border-white/5 py-8 mt-auto">
+        <div class="max-w-6xl mx-auto px-6 text-center text-xs text-slate-600 font-bold tracking-widest">
+            &copy; 2026 Ahova. All rights reserved. The Purity Standard.
         </div>
-    </section>
-
-    <footer class="bg-[#0b1120] border-t border-white/5 py-8">
-        <div class="max-w-6xl mx-auto px-6 text-center text-xs text-slate-500 font-bold tracking-widest">&copy; 2026 Ahova. All rights reserved. The Purity Standard.</div>
     </footer>
+
+    <script>
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
